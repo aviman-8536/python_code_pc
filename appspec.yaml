@@ -1,18 +1,31 @@
+# version: 0.0
+# os: linux
+# files:
+#   - source: /
+#     destination: /var/www/html/myapp
+# hooks:
+#   BeforeInstall:
+#     - location: scripts/install_dependencies.sh
+#       timeout: 300
+#       runas: ec2-user
+#   AfterInstall:
+#     - location: scripts/start_server.sh
+#       timeout: 300
+#       runas: ec2-user
+#   ApplicationStop:
+#     - location: scripts/stop_server.sh
+#       timeout: 300
+#       runas: ec2-user
+
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /var/www/html/myapp
+  - source: /appspec.yaml
+    destination: /home/ec2-user/demo-app
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: DEMO_AWS/my_files/before.sh
       timeout: 300
-      runas: ec2-user
   AfterInstall:
-    - location: scripts/start_server.sh
+    - location: DEMO_AWS/my_files/after.sh
       timeout: 300
-      runas: ec2-user
-  ApplicationStop:
-    - location: scripts/stop_server.sh
-      timeout: 300
-      runas: ec2-user
